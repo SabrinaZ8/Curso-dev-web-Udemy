@@ -7,7 +7,7 @@ function checkGuess() {
     tries++
 
     if(guess == randomNumber) {
-        message.innerHTML = `Congratulations, you guessed the number in ${tries}!`
+        message.innerHTML = `Congratulations, you guessed the number in ${tries} tries!`
     } else if(guess < randomNumber) {
         message.innerHTML = 'Too low. Try again!'
     } else {
