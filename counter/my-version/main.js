@@ -1,27 +1,20 @@
-const counter = document.getElementById('counter');
-const incrementButton = document.getElementById('increment');
-const decrementButton = document.getElementById('decrement');
-const resetButton = document.getElementById('reset');
+const counter = document.getElementById('counter')
+const increment = document.getElementById('increment')
+const decrement = document.getElementById('decrement')
+const reset = document.getElementById('reset')
 
-let count = 0;
+let valorATual = 0
 
-function updateCounter() {
-  counter.textContent = count;
-}
+increment.addEventListener('click', function() {
+ valorATual++
+ counter.innerText = valorATual
+})
 
-incrementButton.addEventListener('click', function() {
-  count++;
-  updateCounter();
-});
+decrement.addEventListener('click', function() {
+  if(valorATual > 0) valorATual--
+  counter.innerText = valorATual
+ })
 
-decrementButton.addEventListener('click', function() {
-  if (count > 0) {
-    count--;
-    updateCounter();
-  }
-});
-
-resetButton.addEventListener('click', function() {
-  count = 0;
-  updateCounter();
-});
+ reset.addEventListener('click', function() {
+  counter.innerText = '0'
+ })
