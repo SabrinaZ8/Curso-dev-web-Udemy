@@ -3,45 +3,45 @@ const startButton = document.getElementById('start');
 const stopButton = document.getElementById('stop');
 const resetButton = document.getElementById('reset');
 
-let timer;
-let remainingTime = 0;
+let time = 5
+let interval;
 
-function updateCountdown() {
-  let minutes = Math.floor(remainingTime / 60);
-  let seconds = remainingTime % 60;
-  countdown.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+function formatTime(time) {
+  let hours = Math.floor(time / 3600);
+  let minutes = Math.floor((time - hours * 3600) / 60);
+  let seconds = time % 60;
+  return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
-function startCountdown() {
-  timer = setInterval(function() {
-    if (remainingTime > 0) {
-      remainingTime--;
-      updateCountdown();
-    } else {
-      stopCountdown();
-    }
-  }, 1000);
+function startTime() {
+  if(time == 0) {
+  clearInterval(interval)
+  time = 60 * 5
+  countdown.innerHTML = formatTime(time)
+  } else {
+    time--
+    countdown.innerHTML = formatTime(time)
+  }
 }
 
-function stopCountdown() {
-  clearInterval(timer);
-}
+startButton.addEventListener('click', function(){
+  startButton.disabled = true
+  stopButton.disabled = false
+  interval = setInterval(() => {
+  startTime()
+}, 1000);
+})
 
-function resetCountdown() {
-  stopCountdown();
-  remainingTime = 0;
-  updateCountdown();
-}
-
-startButton.addEventListener('click', function() {
-  remainingTime = 5 * 60; // 5 minutes in seconds
-  startCountdown();
-});
-
-stopButton.addEventListener('click', function() {
-  stopCountdown();
-});
+stopButton.addEventListener('click', function(){
+  clearInterval(interval)
+  startButton.disabled = false
+  stopButton.disabled = true
+})
 
 resetButton.addEventListener('click', function() {
-  resetCountdown();
-});
+  clearInterval(interval)
+  time = 60 * 5
+  countdown.innerHTML = formatTime(time)
+  startButton.disabled = false
+  stopButton.disabled = false
+})
