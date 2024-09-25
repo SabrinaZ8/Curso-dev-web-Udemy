@@ -1,5 +1,23 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: rgb(28, 35, 48);
+}
+
 .container {
   text-align: center;
+  background-color: rgb(202, 196, 196);
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid rgb(9, 164, 58);
+  
 }
 
 h1 {
@@ -8,16 +26,16 @@ h1 {
 }
 
 #display {
-  font-size: 5em;
+  font-size: 3em;
   margin-bottom: 0.5em;
+  color: cadetblue;
 }
 
 button {
-  font-size: 1.5em;
-  padding: 0.5em 1em;
+  font-size: 1.2em;
+  padding: 0.2em 1em;
   margin: 0 0.5em;
-}
-
-body {
-  background-color: aquamarine;
+  background: none;
+  border: 1px solid rgb(87, 82, 82);
+  border-radius: 7px;
 }

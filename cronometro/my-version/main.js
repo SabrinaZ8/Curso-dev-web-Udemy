@@ -3,8 +3,8 @@ const startButton = document.getElementById('start');
 const stopButton = document.getElementById('stop');
 const resetButton = document.getElementById('reset');
 
-let intervalId;
-let elapsedTime = 0;
+let time = 0
+let interval;
 
 function formatTime(time) {
   let hours = Math.floor(time / 3600);
@@ -13,31 +13,29 @@ function formatTime(time) {
   return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
-function updateTime() {
-  elapsedTime++;
-  display.textContent = formatTime(elapsedTime);
+function startTime() {
+    time++
+    display.innerHTML = formatTime(time)
+    startButton.disabled = true
+    stopButton.disabled = false
 }
 
-function start() {
-  intervalId = setInterval(updateTime, 1000);
-  startButton.disabled = true;
-  stopButton.disabled = false;
-}
+startButton.addEventListener('click', function(){
+  interval = setInterval(() => {
+  startTime()
+}, 1000);
+})
 
-function stop() {
-  clearInterval(intervalId);
-  startButton.disabled = false;
-  stopButton.disabled = true;
-}
+stopButton.addEventListener('click', function(){
+  clearInterval(interval)
+  startButton.disabled = false
+  stopButton.disabled = true
+})
 
-function reset() {
-  clearInterval(intervalId);
-  elapsedTime = 0;
-  display.textContent = formatTime(elapsedTime);
-  startButton.disabled = false;
-  stopButton.disabled = true;
-}
-
-startButton.addEventListener('click', start);
-stopButton.addEventListener('click', stop);
-resetButton.addEventListener('click', reset);
+resetButton.addEventListener('click', function() {
+  clearInterval(interval)
+  time = 0
+  display.innerHTML = formatTime(0)
+  startButton.disabled = false
+  stopButton.disabled = false
+})
