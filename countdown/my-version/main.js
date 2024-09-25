@@ -3,7 +3,7 @@ const startButton = document.getElementById('start');
 const stopButton = document.getElementById('stop');
 const resetButton = document.getElementById('reset');
 
-let time = 5
+let time = 60 * 5
 let interval;
 
 function formatTime(time) {
